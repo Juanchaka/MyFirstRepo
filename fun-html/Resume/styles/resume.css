@@ -1,0 +1,69 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(172, 172, 172);
+}
+
+.resume {
+    width: 90%;
+    height: 99%;
+    background-color: rgb(35, 35, 35);
+}
+
+.top {
+    border-bottom: 1px solid rgba(176, 176, 176, 0.148);
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    /* row-gap: 20px; */
+}
+
+.profile {
+    margin-left: 3%;
+    margin-top: 3%;
+    display: flex;
+    width: 40%;
+}
+
+.profile-info {
+    margin-top: 3%;
+    margin-left: 2%;
+    display: flex;
+    flex-flow: column;
+}
+
+.profile h1 {
+    color: white;
+    margin-top: 20%;
+}
+
+.profile p {
+    color: aquamarine;
+}
+
+.information {
+    font-size: 12px;
+    margin-right: 3%;
+    margin-top: 3%;
+    text-align: left;
+    text-align:center;
+}
+
+.description {
+    margin: 3%;
+    margin-bottom: 6%;
+}
+
+b {
+    font-size: 15px;
+    color: white;
+}

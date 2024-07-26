@@ -1,0 +1,29 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.big {
+    height: 500px;
+    width: 500px;
+    background-color: blue;
+    display: flex;
+}
+
+.medium {
+    height: 250px;
+    width: 250px;
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.small {
+    height: 50px;
+    width: 50px;
+    background-color: blue;
+}
