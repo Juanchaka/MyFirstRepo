@@ -1,6 +1,8 @@
 SBA 307 - HTML and CSS
 This is a Skills Based Assessment submission
 
+https://github.com/Juanchaka/MyFirstRepo/tree/master/fun-html/zSBA
+
 The website is a 3 page dark site focusing on photos as the main content to meet the requirements of the assessment.
 
 the HOME page consists of a photo scroll animating the photos using only CSS
