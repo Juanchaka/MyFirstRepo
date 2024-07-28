@@ -4,59 +4,70 @@
 }
 
 body {
-    background-color: rgb(125, 86, 86);
+    background-image: url("/fun-html/zSBA/gif/vimage.gif");
+    background-size: cover;
     height: 100vh;
     width: 100vw;
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 nav {
-    border: 3px solid rgb(13, 0, 201);
     height: 10%;
-    z-index: -1;
+    width: 100%;
 }
 
 ul {
+    height: 98%;
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
-    align-items: center;
 }
 
 li {
-    height: 70px;
+    border-left: 1px solid rgba(202, 86, 86, 0.375);
+    border-right: 1px solid rgba(202, 86, 86, 0.375);
+    padding: 28px 50px;
+    color: azure;
 }
 
-li img {
-    height: 100%;
+li:hover {
+    background-color: rgb(202, 86, 86);
+    color: black;
 }
 
 section {
-    background-color: rgb(244, 244, 244);
+    height: 70%;
     display: flex;
-    justify-content: center;
+    align-items: center;
 }
 
 .img-slider-container {
-    border: 3px solid red;
     height: 80%;
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
 }
 
-.img-slider-container .img-container {
-    border: 3px solid rgb(0, 239, 36);
+.img-container {
     overflow: scroll;
+    scrollbar-color: rgba(202, 86, 86, 0.459) rgba(202, 86, 86, 0.293);
+    scrollbar-width: thin;
     overflow-y: hidden;
-    height: 88%;
+    height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
 }
 
-.img-container img {
-    width: 100%;
-    object-fit: fill;
+img {
+    width: 15%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms ease-in;
+}
+
+img:hover {
+    transform: scale(1.2);
+    width: 200px;
+    border: 2px solid rgb(202, 86, 86);
 }

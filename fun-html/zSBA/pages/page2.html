@@ -4,10 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page2</title>
-    <link rel="stylesheet" href="/zSBA/styles/page2.css">
+    <link rel="stylesheet" href="/fun-html/zSBA/styles/page2.css">
+    <style>
+        ul {
+            list-style: none;
+        }
+    </style>
 </head>
 <body>
-    <p>How'd you like the site?</p>
-    <form action="#"></form>
+    <nav>
+        <ul>
+            <a href="." rel="noreferrer noopener" style="text-decoration: none;"><li>HOME</li></a>
+
+            <a href="/fun-html/zSBA/pages/page1.html" target="_blank" rel="noreferrer noopener" style="text-decoration: none;"><li>PAGE1</li></a>
+            
+            <a href=" " rel="noreferrer noopener" style="text-decoration: none;"><li>PAGE2</li></a>
+        </ul>
+    </nav>
+    <section>
+        <div class="form-container">
+            <form action="#">
+                <h1 style="text-align: center;">
+                    LET US KNOW HOW WE DID
+                </h1>
+                <div class="name">
+                    <div class="firstname">
+                        <label for="firstname">First Name:</label>
+                        <input type="text" name="firstname" maxlength="20" class="name-input" required>
+                    </div>
+                    <div class="lastname">
+                        <label for="lastname" >Last Name:</label>
+                        <input type="text" name="lastname" maxlength="20" class="name-input" required>
+                    </div>
+                </div>
+                <!-- <div class="rating">
+                    <label for="rating" >Rate Our Site:</label>
+                    <br>
+                    <input type="radio" id="5" name="rating" value="5" required>
+                    <label for="5">5</label>
+                    <br>
+                    <input type="radio" id="4" name="rating" value="4" required>
+                    <label for="4">4</label>
+                    <br>
+                    <input type="radio" id="3" name="rating" value="3" required>
+                    <label for="3">3</label>
+                    <br>
+                    <input type="radio" id="2" name="rating" value="2" required>
+                    <label for="2">2</label>
+                    <br>
+                    <input type="radio" id="1" name="rating" value="1" required>
+                    <label for="1">1</label>
+                </div> -->
+                <div>
+                    <label for="rating">Please Rate Our Site:</label>
+                    <select name="rating" id="rating" required>
+                        <option value="" disabled selected>Please choose a rating</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select> 
+                </div>
+                <div class="comment">
+                    <label for="comment">Please let us know below why you made the rating above.</label>
+                    <textarea name="comment" id="comment" cols="2" rows="10" style="font-size: 2rem; max-width: 100%; max-height: 80%; min-width: 80%; min-height: 70%;" placeholder="Describe your rating above." class="comment-input" required></textarea>
+                </div>
+                <button type="submit" value="submit">SUBMIT</button>
+            </form>
+        </div>
+    </section>
 </body>
 </html>

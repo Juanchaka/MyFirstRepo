@@ -1,0 +1,160 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-image: url("/fun-html/zSBA/gif/vimage.gif");
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+    height: 10%;
+    width: 100%;
+}
+
+ul {
+    height: 98%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+li {
+    border-left: 1px solid rgba(202, 86, 86, 0.375);
+    border-right: 1px solid rgba(202, 86, 86, 0.375);
+    padding: 28px 50px;
+    color: azure;
+}
+
+li:hover {
+    background-color: rgb(202, 86, 86);
+    color: black;
+}
+
+section {
+    height: 70%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    width: 70%;
+    height: 70%;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+caption {
+    color: white;
+}
+
+.photo {
+    background-image: url(/fun-html/zSBA/img/marek-piwnicki.jpg);
+    background-position: center;
+    background-size: cover;
+    opacity: .5;
+}
+
+.photo:hover {
+    opacity: 1;
+    animation: changebg 7s ease-in forwards;
+}
+
+@keyframes changebg {
+    0% {
+        background-image: url(/fun-html/zSBA/img/marek-piwnicki.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+
+    25% {
+        background-image: url(/fun-html/zSBA/img/alex-dos-santos.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+
+    35% {
+        background-image: url(/fun-html/zSBA/img/alex-dos-santos.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+
+    50%{
+        background-image: url(/fun-html/zSBA/img/hatice.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+
+    60%{
+        background-image: url(/fun-html/zSBA/img/hatice.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+
+    75% {
+        background-image: url(/fun-html/zSBA/img/mustafa-karaborklu.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+
+    100% {
+        background-image: url(/fun-html/zSBA/img/david-zherdenovsky.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+}
+
+form {
+    border-radius: 10px;
+    background-image: url(/fun-html/zSBA/img/formLighter.png);
+    background-position: center;
+    background-size: cover;
+    height: 57%;
+    width: 70%;
+    margin-bottom: 2%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    color: black;
+}
+
+h1 {
+    margin-top: 3%;
+}
+
+.rating {
+    width: 60%;
+    height: 50%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="radio"] {
+    accent-color: rgba(202, 86, 86, 0.375);
+}
+
+.rating-responses {
+    height: 100%;
+    margin-top: 3%;
+}
+
+button {
+    padding: 2% 3%;
+    margin: 1%;
+    border: none;
+    border-radius: 40px;
+    background-color: rgb(202, 86, 86);
+    cursor: pointer;
+}
