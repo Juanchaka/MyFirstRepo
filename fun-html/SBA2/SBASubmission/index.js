@@ -126,39 +126,39 @@ const LearnerSubmissions = [
 ];
 
 function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
-  function isNumber(value) {
-    if (typeof value !== "number" && isNaN(value)) {
-      throw Error(`Please enter a valid number`);
-    }
-  }
+  // function isNumber(value) {
+  //   if (typeof value !== "number" && isNaN(value)) {
+  //     throw Error(`Please enter a valid number`);
+  //   }
+  // }
 
-  if (AssignmentGroup.course_id !== CourseInfo.id) {
-    throw Error(`Assignment group does not belong to course`);
-  }
+  // if (AssignmentGroup.course_id !== CourseInfo.id) {
+  //   throw Error(`Assignment group does not belong to course`);
+  // }
 
-  for (assignment of AssignmentGroup.assignments) {
-    if (
-      isNumber(assignment.points_possible) ||
-      assignment.points_possible <= 0
-    ) {
-      console.log(assignment.points_possible);
-      throw Error(`Please enter valid "points_possible" number greater than 0`);
-    }
-  }
+  // for (assignment of AssignmentGroup.assignments) {
+  //   if (
+  //     isNumber(assignment.points_possible) ||
+  //     assignment.points_possible <= 0
+  //   ) {
+  //     console.log(assignment.points_possible);
+  //     throw Error(`Please enter valid "points_possible" number greater than 0`);
+  //   }
+  // }
 
   function calculateAssignmentScore(submission, assignment) {
-    let { score } = submission;
-    // if (!isNumber(score) || !isNumber(assignment.points_possible)) {
+    let score = submission.score;
+    // if (isNumber(score) || isNumber(assignment.points_possible)) {
     // console.log(score, assignment.points_possible);
     //   throw Error(`Invalid score or points_possible.`);
     // }
-    if (assignment.points_possible === 0) {
-      return 0;
-    }
-    const onTime = new Date();
+    // else if (assignment.points_possible === 0 || score === 0) {
+    //   return 0;
+    // }
+    const onTime = new Date(submission.submitted_at);
     const dueDate = new Date(assignment.due_at);
-    if (onTime > dueDate) {
-      score *= 0.9;
+    if (onTime < dueDate) {
+      score = assignment.points_possible;
     }
     return score / assignment.points_possible;
   }
@@ -166,14 +166,11 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
   const learners = {};
 
   for (const assignment of AssignmentGroup.assignments) {
-    console.log(`success!`);
     const assignmentId = assignment.id;
     const pointsPossible = assignment.points_possible;
-    console.log(`${pointsPossible}`);
     const due = assignment.due_at;
     // if (isNumber(pointsPossible) || pointsPossible <= 0) continue;
     for (const submission of LearnerSubmissions) {
-      console.log(`4loop is running`);
       const {
         learner_id,
         assignment_id,
@@ -228,4 +225,4 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
   return Object.values(learners);
 }
 
-console.log(getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions));
+getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
