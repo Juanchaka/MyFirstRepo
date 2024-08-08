@@ -138,18 +138,20 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
 
   for (assignment of AssignmentGroup.assignments) {
     if (
-      !isNumber(assignment.points_possible) ||
+      isNumber(assignment.points_possible) ||
       assignment.points_possible <= 0
     ) {
+      console.log(assignment.points_possible);
       throw Error(`Please enter valid "points_possible" number greater than 0`);
     }
   }
 
   function calculateAssignmentScore(submission, assignment) {
     let { score } = submission;
-    if (!isNumber(score) || !isNumber(assignment.points_possible)) {
-      throw Error(`Invalid score or points_possible.`);
-    }
+    // if (!isNumber(score) || !isNumber(assignment.points_possible)) {
+    // console.log(score, assignment.points_possible);
+    //   throw Error(`Invalid score or points_possible.`);
+    // }
     if (assignment.points_possible === 0) {
       return 0;
     }
@@ -164,12 +166,14 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
   const learners = {};
 
   for (const assignment of AssignmentGroup.assignments) {
+    console.log(`success!`);
     const assignmentId = assignment.id;
     const pointsPossible = assignment.points_possible;
+    console.log(`${pointsPossible}`);
     const due = assignment.due_at;
-    if (!isNumber(pointsPossible) || pointsPossible <= 0) continue;
-
+    // if (isNumber(pointsPossible) || pointsPossible <= 0) continue;
     for (const submission of LearnerSubmissions) {
+      console.log(`4loop is running`);
       const {
         learner_id,
         assignment_id,
@@ -194,6 +198,7 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
             };
           }
           learners[learner_id].scores[assignmentId] = percentageScore;
+          console.log(learners);
         }
       }
     }
@@ -223,4 +228,4 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
   return Object.values(learners);
 }
 
-getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
+console.log(getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions));
