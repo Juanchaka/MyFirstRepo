@@ -61,7 +61,7 @@ const results = part4_input.map((element) => {
 console.log(results);
 let popped = results;
 popped.pop();
-console.log(popped);
+console.log(popped)
 
 // part 5 
 let newData = results;
