@@ -59,6 +59,10 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
       break;
     }
 
+    // confirming the ids can be reached, but unsure how to make it so code only runs when one Id matches the other for each item
+    // AssignmentGroup.assignments.map((element) => {console.log(element.id)})
+    // LearnerSubmissions.map((element) => {console.log(element.assignment_id)})
+
     function parseDate(dateStr) {
       try {
         return new Date(dateStr);
@@ -82,11 +86,11 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
       }
 
       LearnerSubmissions.forEach((submission) => {
-        // if (assignmentId == LearnerSubmissions.assignment_id)
+        // if (assignmentId === LearnerSubmissions.assignment_id)
         // console.log(assignmentId);
 
         // console.log(submission.assignment_id);
-        //trying to make the average calculate properly only when the ids of the assignments match the ids of the learner submission, but am stuck
+        //trying to make the average calculate properly only when the ids of the assignments match the ids of the learner submission, but am stuckz
 
         const learnerId = submission.learner_id;
         const learnerScore = submission.submission.score;
