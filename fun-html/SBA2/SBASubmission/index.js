@@ -1,11 +1,9 @@
-// testing
-// The provided course information.
+// The provided course information
 const CourseInfo = {
   id: 451,
   name: "Introduction to JavaScript",
 };
 
-// The provided assignment group.
 const AssignmentGroup = {
   id: 12345,
   name: "Fundamentals of JavaScript",
@@ -33,7 +31,6 @@ const AssignmentGroup = {
   ],
 };
 
-// The provided learner submission data.
 const LearnerSubmissions = [
   {
     learner_id: 125,
@@ -55,68 +52,77 @@ const LearnerSubmissions = [
 
 function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
   try {
-      if (AssignmentGroup.course_id !== CourseInfo.id) {
-          throw new Error("Assignment group does not belong to the specified course.");
+    // Validate course ID in assignment group
+    if (AssignmentGroup.course_id !== CourseInfo.id) {
+      throw new Error("Assignment group does not belong to the specified course.");
+    }
+
+    // Helper function to parse dates
+    function parseDate(dateStr) {
+      try {
+        return new Date(dateStr);
+      } catch (error) {
+        throw new Error("Invalid date format. Please enter date as yyyy-mm-dd");
+      }
+    }
+
+    // Helper function to handle zero points_possible
+    function avoid0Input(numerator, denominator) {
+      return denominator === 0 ? 0 : numerator / denominator;
+    }
+
+    const results = {};
+
+    // Process each assignment
+    AssignmentGroup.assignments.forEach(assignment => {
+      const assignmentId = assignment.id;
+      const pointsPossible = assignment.points_possible;
+
+      if (pointsPossible <= 0) {
+        throw new Error("Points possible must be greater than zero.");
       }
 
-      function parseDate(dateStr) {
-          try {
-              return new Date(dateStr);
-          } catch (error) {
-              throw new Error("Invalid date format. Please enter date as yyyy-mm-dd");
-          }
-      }
+      LearnerSubmissions.forEach(submission => {
+        const learnerId = submission.learner_id;
+        const learnerScore = submission.submission.score;
+        const submissionDate = parseDate(submission.submission.submitted_at);
+        const dueDate = parseDate(assignment.due_at);
 
-      function avoid0Input(numerator, denominator) {
-          return denominator === 0 ? 0 : numerator / denominator;
-      }
+        if (submissionDate < dueDate) return; // Skip if assignment is not yet due
 
-      const results = {};
+        // Calculate penalty for late submission
+        const penalty = submissionDate > dueDate ? 0.1 * pointsPossible : 0;
 
-      AssignmentGroup.assignments.forEach(assignment => {
-          const assignmentId = assignment.id;
-          const pointsPossible = assignment.points_possible;
+        if (!results[learnerId]) {
+          results[learnerId] = {
+            id: learnerId,
+            totalPoints: 0,
+            totalScore: 0,
+            assignments: {}
+          };
+        }
 
-          if (pointsPossible <= 0) {
-              throw new Error("Points possible must be greater than zero.");
-          }
+        const actualScore = Math.max(0, learnerScore - penalty);
+        const scorePercentage = avoid0Input(actualScore, pointsPossible) * 100;
 
-          LearnerSubmissions.forEach(submission => {
-              const learnerId = submission.learner_id;
-              const learnerScore = submission.submission.score;
-              const submissionDate = parseDate(submission.submission.submitted_at);
-              const dueDate = parseDate(assignment.due_at);
+        results[learnerId].assignments[assignmentId] = scorePercentage;
 
-              if (submissionDate < dueDate) return;
-
-              const penalty = submissionDate > dueDate ? 0.1 * pointsPossible : 0;
-
-              if (!results[learnerId]) {
-                  results[learnerId] = {
-                      id: learnerId,
-                      avg: 0,
-                      assignments: {}
-                  };
-              }
-
-              const actualScore = Math.max(0, learnerScore - penalty);
-              const scorePercentage = avoid0Input(actualScore, pointsPossible) * 100;
-
-              results[learnerId].assignments[assignmentId] = scorePercentage;
-              results[learnerId].avg = (results[learnerId].avg * (results[learnerId].totalPoints || 0) + actualScore) / (results[learnerId].totalPoints + pointsPossible);
-              results[learnerId].totalPoints = (results[learnerId].totalPoints || 0) + pointsPossible;
-          });
+        // Update total points and total score
+        results[learnerId].totalPoints += pointsPossible;
+        results[learnerId].totalScore += actualScore;
       });
+    });
 
-      return Object.values(results).map(learner => ({
-          id: learner.id,
-          avg: (learner.avg || 0).toFixed(2),
-          ...learner.assignments
-      }));
+    // Convert results object to array and calculate averages
+    return Object.values(results).map(learner => ({
+      id: learner.id,
+      avg: learner.totalPoints === 0 ? 0 : (learner.totalScore / learner.totalPoints * 100),
+      ...learner.assignments
+    }));
 
   } catch (error) {
-      console.error("Error:", error.message);
-      return [];
+    console.error("Error:", error.message);
+    return [];
   }
 }
 
