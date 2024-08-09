@@ -52,12 +52,13 @@ const LearnerSubmissions = [
 
 function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
   try {
-    // Validate course ID in assignment group
-    if (AssignmentGroup.course_id !== CourseInfo.id) {
-      throw new Error("Assignment group does not belong to the specified course.");
+    while (AssignmentGroup.course_id !== CourseInfo.id) {
+      throw new Error(
+        "Assignment group does not belong to the specified course."
+      );
+      break;
     }
 
-    // Helper function to parse dates
     function parseDate(dateStr) {
       try {
         return new Date(dateStr);
@@ -66,15 +67,13 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
       }
     }
 
-    // Helper function to handle zero points_possible
     function avoid0Input(numerator, denominator) {
       return denominator === 0 ? 0 : numerator / denominator;
     }
 
     const results = {};
 
-    // Process each assignment
-    AssignmentGroup.assignments.forEach(assignment => {
+    AssignmentGroup.assignments.forEach((assignment) => {
       const assignmentId = assignment.id;
       const pointsPossible = assignment.points_possible;
 
@@ -82,15 +81,20 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
         throw new Error("Points possible must be greater than zero.");
       }
 
-      LearnerSubmissions.forEach(submission => {
+      LearnerSubmissions.forEach((submission) => {
+        // if (assignmentId == LearnerSubmissions.assignment_id)
+        // console.log(assignmentId);
+
+        // console.log(submission.assignment_id);
+        //trying to make the average calculate properly only when the ids of the assignments match the ids of the learner submission, but am stuck
+
         const learnerId = submission.learner_id;
         const learnerScore = submission.submission.score;
         const submissionDate = parseDate(submission.submission.submitted_at);
         const dueDate = parseDate(assignment.due_at);
 
-        if (submissionDate < dueDate) return; // Skip if assignment is not yet due
+        if (submissionDate < dueDate) return;
 
-        // Calculate penalty for late submission
         const penalty = submissionDate > dueDate ? 0.1 * pointsPossible : 0;
 
         if (!results[learnerId]) {
@@ -98,7 +102,7 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
             id: learnerId,
             totalPoints: 0,
             totalScore: 0,
-            assignments: {}
+            assignments: {},
           };
         }
 
@@ -107,19 +111,19 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
 
         results[learnerId].assignments[assignmentId] = scorePercentage;
 
-        // Update total points and total score
         results[learnerId].totalPoints += pointsPossible;
         results[learnerId].totalScore += actualScore;
       });
     });
 
-    // Convert results object to array and calculate averages
-    return Object.values(results).map(learner => ({
+    return Object.values(results).map((learner) => ({
       id: learner.id,
-      avg: learner.totalPoints === 0 ? 0 : (learner.totalScore / learner.totalPoints * 100),
-      ...learner.assignments
+      avg:
+        learner.totalPoints === 0
+          ? 0
+          : (learner.totalScore / learner.totalPoints) * 100,
+      ...learner.assignments,
     }));
-
   } catch (error) {
     console.error("Error:", error.message);
     return [];
