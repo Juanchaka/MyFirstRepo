@@ -47,6 +47,22 @@ const LearnerSubmissions = [
       score: 47,
     },
   },
+  {
+    learner_id: 125,
+    assignment_id: 2,
+    submission: {
+      submitted_at: "2023-01-28",
+      score: 130,
+    },
+  },
+  {
+    learner_id: 125,
+    assignment_id: 3,
+    submission: {
+      submitted_at: "3156-10-10",
+      score: 400,
+    },
+  },
 ];
 
 function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
@@ -102,7 +118,7 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
             };
           }
 
-          results[learnerId].assignments[assignmentId] = scorePercentage;
+          results[learnerId].assignments[assignmentId] = Math.floor(scorePercentage);
           results[learnerId].totalPoints += pointsPossible;
           results[learnerId].totalScore += actualScore;
         }
@@ -113,7 +129,7 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
       id: learner.id,
       avg: learner.totalPoints === 0
         ? 0
-        : (learner.totalScore / learner.totalPoints) * 100,
+        : Math.floor((learner.totalScore / learner.totalPoints) * 100),
       ...learner.assignments,
     }));
   } catch (error) {
