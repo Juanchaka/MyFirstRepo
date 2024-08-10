@@ -68,8 +68,9 @@ const LearnerSubmissions = [
 
 function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
   try {
-    if (AssignmentGroup.course_id !== CourseInfo.id) {
-      throw new Error("Assignment group does not belong to the specified course.");
+    while (AssignmentGroup.course_id !== CourseInfo.id) {
+      console.log("Assignment group does not belong to the specified course.");
+      break;
     }
 
     function parseDate(dateStr) {
