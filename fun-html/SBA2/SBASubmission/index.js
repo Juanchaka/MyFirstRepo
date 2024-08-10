@@ -65,6 +65,7 @@ const LearnerSubmissions = [
   },
 ];
 
+
 function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
   try {
     if (AssignmentGroup.course_id !== CourseInfo.id) {
@@ -87,7 +88,7 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
 
     AssignmentGroup.assignments.forEach((assignment) => {
       const assignmentId = assignment.id;
-      const pointsPossible = assignment.points_possible;
+      const pointsPossible = Number(assignment.points_possible);
 
       if (pointsPossible <= 0) {
         throw new Error("Points possible must be greater than zero.");
@@ -96,7 +97,7 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
       LearnerSubmissions.forEach((submission) => {
         if (submission.assignment_id === assignmentId) {
           const learnerId = submission.learner_id;
-          const learnerScore = submission.submission.score;
+          const learnerScore = Number(submission.submission.score);
           const submissionDate = parseDate(submission.submission.submitted_at);
           const dueDate = parseDate(assignment.due_at);
 
@@ -118,9 +119,11 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
             };
           }
 
-          results[learnerId].assignments[assignmentId] = Math.floor(scorePercentage);
-          results[learnerId].totalPoints += pointsPossible;
-          results[learnerId].totalScore += actualScore;
+          if (submissionDate <= dueDate) {
+            results[learnerId].assignments[assignmentId] = Math.round(scorePercentage); 
+            results[learnerId].totalPoints += pointsPossible;
+            results[learnerId].totalScore += actualScore;
+          }
         }
       });
     });
@@ -129,7 +132,7 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
       id: learner.id,
       avg: learner.totalPoints === 0
         ? 0
-        : Math.floor((learner.totalScore / learner.totalPoints) * 100),
+        : Math.round((learner.totalScore / learner.totalPoints) * 100),
       ...learner.assignments,
     }));
   } catch (error) {
@@ -139,4 +142,3 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
 }
 
 console.log(getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions));
-
