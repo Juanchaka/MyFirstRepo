@@ -1,4 +1,3 @@
-// The provided course information
 const CourseInfo = {
   id: 451,
   name: "Introduction to JavaScript",
@@ -44,7 +43,7 @@ const LearnerSubmissions = [
     learner_id: 130,
     assignment_id: 2,
     submission: {
-      submitted_at: "2023-01-26",
+      submitted_at: "2023-01-25",
       score: 47,
     },
   },
@@ -52,23 +51,16 @@ const LearnerSubmissions = [
 
 function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
   try {
-    while (AssignmentGroup.course_id !== CourseInfo.id) {
-      throw new Error(
-        "Assignment group does not belong to the specified course."
-      );
-      break;
+    if (AssignmentGroup.course_id !== CourseInfo.id) {
+      throw new Error("Assignment group does not belong to the specified course.");
     }
 
-    // confirming the ids can be reached, but unsure how to make it so code only runs when one Id matches the other for each item
-    // AssignmentGroup.assignments.map((element) => {console.log(element.id)})
-    // LearnerSubmissions.map((element) => {console.log(element.assignment_id)})
-
     function parseDate(dateStr) {
-      try {
-        return new Date(dateStr);
-      } catch (error) {
+      const date = new Date(dateStr);
+      if (isNaN(date.getTime())) {
         throw new Error("Invalid date format. Please enter date as yyyy-mm-dd");
       }
+      return date;
     }
 
     function avoid0Input(numerator, denominator) {
@@ -86,46 +78,42 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
       }
 
       LearnerSubmissions.forEach((submission) => {
-        // if (assignmentId === LearnerSubmissions.assignment_id)
-        // console.log(assignmentId);
+        if (submission.assignment_id === assignmentId) {
+          const learnerId = submission.learner_id;
+          const learnerScore = submission.submission.score;
+          const submissionDate = parseDate(submission.submission.submitted_at);
+          const dueDate = parseDate(assignment.due_at);
 
-        // console.log(submission.assignment_id);
-        //trying to make the average calculate properly only when the ids of the assignments match the ids of the learner submission, but am stuckz
+          let penalty = 0;
 
-        const learnerId = submission.learner_id;
-        const learnerScore = submission.submission.score;
-        const submissionDate = parseDate(submission.submission.submitted_at);
-        const dueDate = parseDate(assignment.due_at);
+          if (submissionDate > dueDate) {
+            penalty = 0.1 * pointsPossible;
+          }
 
-        if (submissionDate < dueDate) return;
+          const actualScore = Math.max(0, learnerScore - penalty);
+          const scorePercentage = avoid0Input(actualScore, pointsPossible) * 100;
 
-        const penalty = submissionDate > dueDate ? 0.1 * pointsPossible : 0;
+          if (!results[learnerId]) {
+            results[learnerId] = {
+              id: learnerId,
+              totalPoints: 0,
+              totalScore: 0,
+              assignments: {},
+            };
+          }
 
-        if (!results[learnerId]) {
-          results[learnerId] = {
-            id: learnerId,
-            totalPoints: 0,
-            totalScore: 0,
-            assignments: {},
-          };
+          results[learnerId].assignments[assignmentId] = scorePercentage;
+          results[learnerId].totalPoints += pointsPossible;
+          results[learnerId].totalScore += actualScore;
         }
-
-        const actualScore = Math.max(0, learnerScore - penalty);
-        const scorePercentage = avoid0Input(actualScore, pointsPossible) * 100;
-
-        results[learnerId].assignments[assignmentId] = scorePercentage;
-
-        results[learnerId].totalPoints += pointsPossible;
-        results[learnerId].totalScore += actualScore;
       });
     });
 
     return Object.values(results).map((learner) => ({
       id: learner.id,
-      avg:
-        learner.totalPoints === 0
-          ? 0
-          : (learner.totalScore / learner.totalPoints) * 100,
+      avg: learner.totalPoints === 0
+        ? 0
+        : (learner.totalScore / learner.totalPoints) * 100,
       ...learner.assignments,
     }));
   } catch (error) {
@@ -135,3 +123,4 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
 }
 
 console.log(getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions));
+
