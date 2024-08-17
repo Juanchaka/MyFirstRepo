@@ -62,3 +62,7 @@ body {
 .button-area button:active {
     background-color: rgb(202, 86, 86);
 }
+
+.button-area button:hover {
+    box-shadow: 0 0 10px rgb(202, 86, 86);
+}

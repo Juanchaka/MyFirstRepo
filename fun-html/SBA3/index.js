@@ -98,11 +98,20 @@ btn.addEventListener('click', function(){
 const mainContent = document.querySelector('.main-content');
 
 mainContent.addEventListener('mouseover', function(){
-  mainContent.style.boxShadow = "0 0 10px rgb(202, 86, 86)";
+  mainContent.style.boxShadow = "0 0 20px rgb(202, 86, 86)";
 });
 
 mainContent.addEventListener('mouseout', function(){
   mainContent.style.boxShadow = "none";
+})
+
+const headerContent = document.querySelector('.header');
+headerContent.addEventListener('mouseover', function(){
+  headerContent.style.boxShadow = "0 0 20px rgb(202, 86, 86)";
+});
+
+headerContent.addEventListener('mouseout', function(){
+  headerContent.style.boxShadow = "none";
 })
 
 //2nd event
