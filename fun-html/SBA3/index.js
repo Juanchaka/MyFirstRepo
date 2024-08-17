@@ -68,10 +68,10 @@ const form = createElement(
     {
       type: "text",
       id: "user-input",
-      name: "userInput",
-      required: true,
+      name: "user-input",
       minlength: 5,
       placeholder: "Type at least 5 characters",
+      required: true
     }
   ),
   createElement(
@@ -83,7 +83,7 @@ const form = createElement(
   ),
   createElement(
     "span",
-    { id: "form-feedback", style: "color: red;" }
+    { id: "form-feedback" }
   )
 );
 
@@ -397,3 +397,15 @@ const formElement = document.getElementById("user-form");
 const userInput = document.getElementById("user-input");
 const formFeedback = document.getElementById("form-feedback");
 
+
+//tried adding the validation and using the 'checkValidity", but the form
+//keeps submitting even if only 1 char is entered.
+formElement.addEventListener("submit", function (e) {
+  e.preventDefault();
+  if (!userInput.checkValidity()) {
+    formFeedback.innerText = "Input is invalid. Make sure it meets the requirements.";
+    // e.preventDefault();
+  } else {
+    formFeedback.innerText = "";
+  }
+});
