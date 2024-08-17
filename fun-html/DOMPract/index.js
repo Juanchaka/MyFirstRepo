@@ -1,43 +1,18 @@
-const containerDiv = document.createElement('div');
-containerDiv.classList.add('container');
-
-const headerDiv = document.createElement('div');
-headerDiv.classList.add('header');
-
-const h2Element = document.createElement('h2');
-h2Element.innerHTML = "Quote Generator";
-
-const mainContentDiv = document.createElement('div');
-mainContentDiv.classList.add('main-content');
-
-const textAreaContent = document.createElement('div');
-textAreaContent.classList.add('text-area');
-
-const quoteSpan = document.createElement('span');
-quoteSpan.classList.add('quote');
-quoteSpan.innerHTML = ` "I try to do my best, but sometimes my best isn't good emough!"`
-
-const person = document.createElement('div');
-person.classList.add('person');
-person.innerHTML = "James Bond"
-
-const buttonArea = document.createElement('div');
-buttonArea.classList.add('button-area');
-
-const buttonElement = document.createElement('button');
-buttonElement.setAttribute('id','new-quote');
-buttonElement.innerText = "New Quote"
-
-console.log(containerDiv);
-console.log(headerDiv);
-console.log(h2Element);
-console.log(mainContentDiv);
-console.log(textAreaContent);
-console.log(quoteSpan);
-console.log(person);
-console.log(buttonArea);
-console.log(buttonElement);
-
+const containerDiv = Object.assign(document.createElement('div'),
+{className:'container'});
+const headerDiv = Object.assign(document.createElement('div'), {className:'header'});
+const h2Element = Object.assign(document.createElement('h2'),
+{innerHTML: "Quote Generator"});
+const mainContentDiv = Object.assign(document.createElement('div'), {className: 'main-content'});
+const textAreaContent = Object.assign(document.createElement('div'),
+{className:'text-area'});
+const quoteSpan = Object.assign(document.createElement('span'),
+{className: 'quote'}, {innerHTML: ` "I try to do my best, but sometimes my best isn't good emough!"`});
+const person = Object.assign(document.createElement('div'), {className: 'person'}, {innerHTML: "James Bond"})
+const buttonArea = Object.assign(document.createElement('div'),
+{className: 'button-area'});
+const buttonElement = Object.assign(document.createElement('button'),
+{id:'new-quote'}, {innerText: "New Quote"});
 
 containerDiv.appendChild(headerDiv);
 headerDiv.appendChild(h2Element);
