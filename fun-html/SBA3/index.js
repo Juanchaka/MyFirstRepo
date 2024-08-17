@@ -401,12 +401,12 @@ const formFeedback = document.getElementById("form-feedback");
 //tried adding the validation and using the 'checkValidity", but the form
 //keeps submitting even if only 1 char is entered.
 formElement.addEventListener("submit", function (e) {
-  e.preventDefault();
   const inputValue = userInput.value
   if (inputValue.length < 5) {
+    e.preventDefault();
     formFeedback.style.color = "rgba(202, 86, 86)";
+    formFeedback.style.marginTop = "10px"
     formFeedback.innerText = "Input is invalid. Make sure it meets the minimum length requirements.";
-    // e.preventDefault();
   } else {
     formFeedback.innerText = "";
   }

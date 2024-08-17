@@ -70,10 +70,6 @@ body {
 
 /*testing the form CSS*/
 #user-form {
-    color: azure;
-}
-
-#user-form {
     padding: 20px;
     background-color: azure;
     border-radius: 15px;
@@ -81,7 +77,13 @@ body {
     max-width: 400px;
     margin: 20px auto;
     color: black;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    justify-content: center;
+    align-items: center;
 }
+
 #user-form:hover {
     box-shadow: 0 0 20px rgba(202, 86, 86);
 }
