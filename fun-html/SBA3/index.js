@@ -279,11 +279,6 @@ const quoteList = [
     person: "Dalai Lama",
   },
   {
-    quote:
-      "The purpose of life is not to be happy. It is to be useful, to be honorable, to be compassionate, to have it make some difference that you have lived and lived well.",
-    person: "Ralph Waldo Emerson",
-  },
-  {
     quote: "Act as if what you do makes a difference. It does.",
     person: "William James",
   },
@@ -321,11 +316,24 @@ const btn = document.getElementById("new-quote");
 const quote = document.querySelector(".quote");
 const person = document.querySelector(".person");
 
+// btn.addEventListener("click", function () {
+//   random = Math.floor(Math.random() * quoteList.length);
+//   quote.innerText = quoteList[random].quote;
+//   person.innerText = quoteList[random].person;
+// });
+
+/*
+The above code may not meet the iteration requirement. Testing another method to print the innerText while meeting iteration requirement.
+*/
+let currentIndex = 0;
+
 btn.addEventListener("click", function () {
-  random = Math.floor(Math.random() * quoteList.length);
-  quote.innerText = quoteList[random].quote;
-  person.innerText = quoteList[random].person;
+  quote.innerText = quoteList[currentIndex].quote;
+  person.innerText = quoteList[currentIndex].person;
+
+  currentIndex = (currentIndex + 1) % quoteList.length;
 });
+
 
 const mainContent = document.querySelector(".main-content");
 const container = document.querySelector('.container');
