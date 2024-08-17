@@ -21,6 +21,17 @@ const containerDiv = createElement('div', { className: 'container' },
 
 document.body.appendChild(containerDiv);
 
+
+
+
+
+
+
+
+
+
+
+//OLD code to create elements and then append each element to the parent and then to the body - refactored to complete steps in a function then return the elements and finally append everything in one step.
 // const containerDiv = Object.assign(document.createElement('div'),
 // {className:'container'});
 // const headerDiv = Object.assign(document.createElement('div'), {className:'header'});
