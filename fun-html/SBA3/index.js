@@ -22,7 +22,8 @@ const containerDiv = createElement('div', { className: 'container' },
 document.body.appendChild(containerDiv);
 
 
-
+//2nd event
+//hover over main content and header and make the event provide a box-shadow: 0 0 10px rgb(202, 86, 86);
 
 
 
