@@ -22,11 +22,8 @@ const containerDiv = createElement('div', { className: 'container' },
 document.body.appendChild(containerDiv);
 
 const btn = document.getElementById('new-quote');
-console.log(btn);
 const quote = document.querySelector('.quote');
-console.log(quote);
 const person = document.querySelectorAll('.person');
-console.log(person);
 
 const quoteList = [
   { quote: "The only limit to our realization of tomorrow is our doubts of today.", person: "Franklin D. Roosevelt" },
@@ -92,6 +89,10 @@ const quoteList = [
   { quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", person: "Brian Tracy" }
 ];
 
+btn.addEventListener('click', function(){
+  random = Math.floor(Math.random() * quoteList.length);
+  console.log(random);
+});
 
 
 //2nd event
