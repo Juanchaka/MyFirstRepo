@@ -11,11 +11,12 @@ const containerDiv = createElement('div', { className: 'container' },
     createElement('div', { className: 'main-content' },
     createElement('div', { className: 'text-area' },
     createElement('span', { className: 'quote', innerHTML: `"I try to do my best, but sometimes my best isn't good enough!"` })
+    ),
+    createElement('div', { className: 'person', innerHTML: "James Bond" }),
+    createElement('div', { className: 'button-area' },
+      createElement('button', { id: 'new-quote', innerText: "New Quote" })
     )
-)
-
-
-
+    )
 );
 
 document.body.appendChild(containerDiv);
