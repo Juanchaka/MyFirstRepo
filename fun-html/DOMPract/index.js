@@ -6,8 +6,17 @@ const createElement = (tag, attributes = {}, ...children) => {
   };
 const containerDiv = createElement('div', { className: 'container' },
     createElement('div', { className: 'header' },
-      createElement('h2', { innerHTML: "Quote Generator" })
-    ));
+    createElement('h2', { innerHTML: "Quote Generator" })
+    ),
+    createElement('div', { className: 'main-content' },
+    createElement('div', { className: 'text-area' },
+    createElement('span', { className: 'quote', innerHTML: `"I try to do my best, but sometimes my best isn't good enough!"` })
+    )
+)
+
+
+
+);
 
 document.body.appendChild(containerDiv);
 
