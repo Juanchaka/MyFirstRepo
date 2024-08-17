@@ -406,7 +406,7 @@ formElement.addEventListener("submit", function (e) {
     e.preventDefault();
     formFeedback.style.color = "rgba(202, 86, 86)";
     formFeedback.style.marginTop = "10px"
-    formFeedback.innerText = "Input is invalid. Make sure it meets the minimum length requirements.";
+    formFeedback.innerText = "Input is invalid! Make sure input meets the specified requirements.";
   } else {
     formFeedback.innerText = "";
   }
