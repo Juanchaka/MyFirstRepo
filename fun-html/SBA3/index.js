@@ -402,11 +402,10 @@ const formFeedback = document.getElementById("form-feedback");
 //keeps submitting even if only 1 char is entered.
 formElement.addEventListener("submit", function (e) {
   e.preventDefault();
-  console.log(formElement);
-  console.log(userInput);
-  console.log(formFeedback);
-  if (!formElement.reportValidity()) {
-    formFeedback.innerText = "Input is invalid. Make sure it meets the requirements.";
+  const inputValue = userInput.value
+  if (inputValue.length < 5) {
+    formFeedback.style.color = "rgba(202, 86, 86)";
+    formFeedback.innerText = "Input is invalid. Make sure it meets the minimum length requirements.";
     // e.preventDefault();
   } else {
     formFeedback.innerText = "";
