@@ -55,7 +55,6 @@ const fragDiv = createElement(
   )
 );
 
-//testing adding a form
 const form = createElement(
   "form",
   { id: "user-form" },
@@ -350,6 +349,8 @@ const btn = document.getElementById("new-quote");
 const quote = document.querySelector(".quote");
 const person = document.querySelector(".person");
 
+//DOES THIS USE THE REQUIRED ITERATION
+
 // btn.addEventListener("click", function () {
 //   random = Math.floor(Math.random() * quoteList.length);
 //   quote.innerText = quoteList[random].quote;
@@ -358,6 +359,7 @@ const person = document.querySelector(".person");
 
 /*
 The above code may not meet the iteration requirement. Testing another method to print the innerText while meeting iteration requirement.
+Could you also confirm if the above uses iteration or not?
 */
 let currentIndex = 0;
 
@@ -392,14 +394,10 @@ headerContent.addEventListener("mouseout", function () {
   headerContent.style.boxShadow = "none";
 });
 
-//testing the form validation
 const formElement = document.getElementById("user-form");
 const userInput = document.getElementById("user-input");
 const formFeedback = document.getElementById("form-feedback");
 
-
-//tried adding the validation and using the 'checkValidity", but the form
-//keeps submitting even if only 1 char is entered.
 formElement.addEventListener("submit", function (e) {
   const inputValue = userInput.value
   if (inputValue.length < 5) {
