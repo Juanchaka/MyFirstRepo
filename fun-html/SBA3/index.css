@@ -66,3 +66,12 @@ body {
 .button-area button:hover {
     box-shadow: 0 0 10px rgb(202, 86, 86);
 }
+
+button {
+    background-color: black;
+    color: azure;
+    font-size: 1.3rem;
+    padding: 10px 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
