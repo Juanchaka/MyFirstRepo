@@ -113,3 +113,6 @@ headerContent.addEventListener('mouseover', function(){
 headerContent.addEventListener('mouseout', function(){
   headerContent.style.boxShadow = "none";
 });
+
+//testing using fragment
+const fragment = document.createDocumentFragment();
