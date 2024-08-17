@@ -10,9 +10,9 @@ const containerDiv = createElement('div', { className: 'container' },
     ),
     createElement('div', { className: 'main-content' },
     createElement('div', { className: 'text-area' },
-    createElement('span', { className: 'quote', innerHTML: `"I try to do my best, but sometimes my best isn't good enough!"` })
+    createElement('span', { className: 'quote', innerHTML: `"Here's to hoping this SBA will finally get me all the points for the assignment!"` })
     ),
-    createElement('div', { className: 'person', innerHTML: "James Bond" }),
+    createElement('div', { className: 'person', innerHTML: "Every PerScholas Student" }),
     createElement('div', { className: 'button-area' },
       createElement('button', { id: 'new-quote', innerText: "New Quote" })
     )
@@ -20,10 +20,6 @@ const containerDiv = createElement('div', { className: 'container' },
 );
 
 document.body.appendChild(containerDiv);
-
-const btn = document.getElementById('new-quote');
-const quote = document.querySelector('.quote');
-const person = document.querySelector('.person');
 
 const quoteList = [
   { quote: "The only limit to our realization of tomorrow is our doubts of today.", person: "Franklin D. Roosevelt" },
@@ -89,11 +85,20 @@ const quoteList = [
   { quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", person: "Brian Tracy" }
 ];
 
+const btn = document.getElementById('new-quote');
+const quote = document.querySelector('.quote');
+const person = document.querySelector('.person');
+
 btn.addEventListener('click', function(){
   random = Math.floor(Math.random() * quoteList.length);
-  console.log(random);
   quote.innerText = quoteList[random].quote;
   person.innerText = quoteList[random].person;
+});
+
+const mainContent = document.querySelector('.main-content');
+
+mainContent.addEventListener('mouseover', function(){
+  mainContent.style.boxShadow = "0 0 10px rgb(202, 86, 86)";
 });
 
 
