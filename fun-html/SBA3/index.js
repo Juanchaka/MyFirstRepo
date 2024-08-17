@@ -4,7 +4,10 @@ const createElement = (tag, attributes = {}, ...children) => {
     children.forEach(child => element.appendChild(child));
     return element;
   };
-const containerDiv = createElement('div', { className: 'container' },
+
+const fragment = document.createDocumentFragment();
+const fragDiv = createElement('div', {className: 'frag'},
+    createElement('div', { className: 'container' },
     createElement('div', { className: 'header' },
     createElement('h2', { innerHTML: "Quote Generator" })
     ),
@@ -17,9 +20,11 @@ const containerDiv = createElement('div', { className: 'container' },
       createElement('button', { id: 'new-quote', innerText: "New Quote" })
     )
     )
+  )
 );
 
-document.body.appendChild(containerDiv);
+fragment.appendChild(fragDiv);
+document.body.appendChild(fragment);
 
 const quoteList = [
   { quote: "The only limit to our realization of tomorrow is our doubts of today.", person: "Franklin D. Roosevelt" },
@@ -113,6 +118,3 @@ headerContent.addEventListener('mouseover', function(){
 headerContent.addEventListener('mouseout', function(){
   headerContent.style.boxShadow = "none";
 });
-
-//testing using fragment
-const fragment = document.createDocumentFragment();
