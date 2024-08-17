@@ -368,7 +368,6 @@ btn.addEventListener("click", function () {
   currentIndex = (currentIndex + 1) % quoteList.length;
 });
 
-
 const mainContent = document.querySelector(".main-content");
 const container = document.querySelector('.container');
 
@@ -392,3 +391,9 @@ headerContent.addEventListener("mouseover", function () {
 headerContent.addEventListener("mouseout", function () {
   headerContent.style.boxShadow = "none";
 });
+
+//testing the form validation
+const formElement = document.getElementById("user-form");
+const userInput = document.getElementById("user-input");
+const formFeedback = document.getElementById("form-feedback");
+
