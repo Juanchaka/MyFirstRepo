@@ -1,3 +1,10 @@
+beforeWeBegin();
+function beforeWeBegin () {
+  alert("Welcome to my Third SBA");
+}
+
+const fragment = document.createDocumentFragment();
+
 const createElement = (tag, attributes = {}, ...children) => {
     const element = document.createElement(tag);
     Object.assign(element, attributes);
@@ -5,20 +12,18 @@ const createElement = (tag, attributes = {}, ...children) => {
     return element;
   };
 
-const fragment = document.createDocumentFragment();
 const fragDiv = createElement('div', {className: 'frag'},
     createElement('div', { className: 'container' },
     createElement('div', { className: 'header' },
-    createElement('h2', { innerHTML: "Quote Generator" })
-    ),
+    createElement('h2', { innerHTML: "Quote Generator" })),
+
     createElement('div', { className: 'main-content' },
     createElement('div', { className: 'text-area' },
-    createElement('span', { className: 'quote', innerHTML: `"Here's to hoping this SBA will finally get me all the points for the assignment!"` })
-    ),
+    createElement('span', { className: 'quote', innerHTML: `"Here's to hoping this SBA will finally get me all the points for the assignment!"` })),
+
     createElement('div', { className: 'person', innerHTML: "Every PerScholas Student" }),
     createElement('div', { className: 'button-area' },
-      createElement('button', { id: 'new-quote', innerText: "New Quote" })
-    )
+      createElement('button', { id: 'new-quote', innerText: "New Quote" }))
     )
   )
 );
