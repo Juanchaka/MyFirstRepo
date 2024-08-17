@@ -101,6 +101,9 @@ mainContent.addEventListener('mouseover', function(){
   mainContent.style.boxShadow = "0 0 10px rgb(202, 86, 86)";
 });
 
+mainContent.addEventListener('mouseout', function(){
+  mainContent.style.boxShadow = "none";
+})
 
 //2nd event
 //hover over main content and header and make the event provide a box-shadow: 0 0 10px rgb(202, 86, 86);
