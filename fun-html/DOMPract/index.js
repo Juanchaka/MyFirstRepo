@@ -4,6 +4,12 @@ const createElement = (tag, attributes = {}, ...children) => {
     children.forEach(child => element.appendChild(child));
     return element;
   };
+const containerDiv = createElement('div', { className: 'container' },
+    createElement('div', { className: 'header' },
+      createElement('h2', { innerHTML: "Quote Generator" })
+    ));
+
+document.body.appendChild(containerDiv);
 
 // const containerDiv = Object.assign(document.createElement('div'),
 // {className:'container'});
