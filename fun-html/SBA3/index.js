@@ -45,6 +45,7 @@ const fragDiv = createElement(
         className: "person",
         innerHTML: "Every PerScholas Student",
       }),
+
       createElement(
         "div",
         { className: "button-area" },
@@ -54,6 +55,39 @@ const fragDiv = createElement(
   )
 );
 
+//testing adding a form
+const form = createElement(
+  "form",
+  { id: "user-form" },
+  createElement(
+    "label",
+    { for: "user-input", innerText: "Type anything then submit the form: " }
+  ),
+  createElement(
+    "input",
+    {
+      type: "text",
+      id: "user-input",
+      name: "userInput",
+      required: true,
+      minlength: 5,
+      placeholder: "Type at least 5 characters",
+    }
+  ),
+  createElement(
+    "button",
+    {
+      type: "submit",
+      innerText: "Submit",
+    }
+  ),
+  createElement(
+    "span",
+    { id: "form-feedback", style: "color: red;" }
+  )
+);
+
+fragDiv.appendChild(form);
 fragment.appendChild(fragDiv);
 document.body.appendChild(fragment);
 
