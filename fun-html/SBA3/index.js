@@ -92,6 +92,7 @@ const quoteList = [
 btn.addEventListener('click', function(){
   random = Math.floor(Math.random() * quoteList.length);
   console.log(random);
+  quote.innerText = quoteList[random].quote;
 });
 
 
