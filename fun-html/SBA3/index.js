@@ -328,10 +328,13 @@ btn.addEventListener("click", function () {
 });
 
 const mainContent = document.querySelector(".main-content");
+const container = document.querySelector('.container');
 
 mainContent.addEventListener("mouseover", function () {
+  if(mainContent == container.lastChild){
   mainContent.style.boxShadow = "0 0 20px rgb(202, 86, 86)";
   mainContent.setAttribute('id', "mousedOver");
+  }
 });
 
 mainContent.addEventListener("mouseout", function () {
