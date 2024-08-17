@@ -23,7 +23,7 @@ document.body.appendChild(containerDiv);
 
 const btn = document.getElementById('new-quote');
 const quote = document.querySelector('.quote');
-const person = document.querySelectorAll('.person');
+const person = document.querySelector('.person');
 
 const quoteList = [
   { quote: "The only limit to our realization of tomorrow is our doubts of today.", person: "Franklin D. Roosevelt" },
@@ -93,6 +93,7 @@ btn.addEventListener('click', function(){
   random = Math.floor(Math.random() * quoteList.length);
   console.log(random);
   quote.innerText = quoteList[random].quote;
+  person.innerText = quoteList[random].person;
 });
 
 
