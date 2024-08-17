@@ -331,10 +331,12 @@ const mainContent = document.querySelector(".main-content");
 
 mainContent.addEventListener("mouseover", function () {
   mainContent.style.boxShadow = "0 0 20px rgb(202, 86, 86)";
+  mainContent.setAttribute('id', "mousedOver");
 });
 
 mainContent.addEventListener("mouseout", function () {
   mainContent.style.boxShadow = "none";
+  mainContent.removeAttribute('id', "mousedOver");
 });
 
 const headerContent = document.querySelector(".header");
