@@ -1,4 +1,4 @@
-                        Dynamic Quote Generator
+                                                            Dynamic Quote Generator
 Overview
 This is a single-page web application designed to provide a dynamic user experience using various DOM and BOM techniques. The application generates famous quotes and allows users to interact with the content through event-driven programming and form validation.
 
