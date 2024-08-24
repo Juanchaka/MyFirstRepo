@@ -1,3 +1,23 @@
+// let payment = 10;
+// let cost = 4;
+// const change = payment - cost;
+// const quarter = .25;
+// const numOfQuarters = change / quarter;
+
+// for(i = 0; i <= change; i++){
+//     if (change) {
+//         console.log(`The cost is $${cost} and you paid $${payment}. Your change is $${quarter * numOfQuarters}. That is ${numOfQuarters} quarters.`);
+//     };
+// };
+
+// let divisBy4 = 0;
+// while (divisBy4 <= 800) {
+//     if(divisBy4 % 4 === 0) {
+//         console.log(divisBy4);
+//     };
+//     divisBy4++
+// }
+
 // const students = [
 //     { name: 'Alice', age: 20, grades: [85, 92, 88] },
 //     { name: 'Bob', age: 22, grades: [78, 81, 79] },
